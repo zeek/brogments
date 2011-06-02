@@ -1,0 +1,4 @@
+*.sw[op]
+brogments.egg-info
+build
+dist
