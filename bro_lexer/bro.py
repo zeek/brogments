@@ -49,18 +49,19 @@ class BroLexer(RegexLexer):
             (r'\d+', Number.Integer),
             (r'"', String, 'string'),
             # Operators
-            (r'[!%*/+-,:;<=>?()[]{}~$|]', Operator),
+            (r'[!%*/+-:<=>?~|]', Operator),
             (r'([-+=&|]{2}|[+-=!><]=)', Operator),
             (r'(in|match)\b', Operator.Word),
+            (r'[{}()\[\]$.,;]', Punctuation),
             # Identfier
             (r'([_a-zA-Z]\w*)(::)', bygroups(Name, Name.Namespace)),
-            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name),
+            (r'[a-zA-Z_][a-zA-Z_0-9]*', Name)
         ],
         'string': [
             (r'"', String, '#pop'),
             (r'\\([\\abfnrtv"\']|x[a-fA-F0-9]{2,4}|[0-7]{1,3})', String.Escape),
             (r'[^\\"\n]+', String),
             (r'\\\n', String),
-            (r'\\', String),
+            (r'\\', String)
         ]
     }
