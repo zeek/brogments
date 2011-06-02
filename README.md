@@ -8,16 +8,16 @@ eye. Because the popular syntax highlighter [Pygments](http://pygments.org/)
 lacks a lexer for the Bro language, this is a first attempt to provide one.
 
 INSTALL
-=======
+-------
 
     python setup.py install
 
 USAGE
-=====
+-----
 
     pygmentize -f html foo.bro
 
 TODO
-====
+----
 
  - Implement regular expression matching.
