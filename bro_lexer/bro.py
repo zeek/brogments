@@ -32,7 +32,6 @@ class BroLexer(RegexLexer):
              r'rotate_(?:interval|size)|synchronized)', bygroups(Punctuation,
                  Keyword)),
             (r'\s+module\b', Keyword.Namespace),
-            (r'()\b', Keyword.Constant),
             # Addresses, ports and networks
             (r'\d+/(tcp|udp|icmp|unknown)', Number),
             (r'(\d+\.){3}\d+', Number),
