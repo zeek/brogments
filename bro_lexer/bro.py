@@ -29,11 +29,11 @@ class BroLexer(RegexLexer):
             (r'(&)((?:add|delete|expire)_func|attr|(create|read|write)_expire'
              r'|default|disable_print_hook|raw_output|encrypt|group|log'
              r'|mergeable|optional|persistent|priority|redef'
-             r'rotate_(?:interval|size)|synchronized)', bygroups(Punctuation,
+             r'|rotate_(?:interval|size)|synchronized)\b', bygroups(Punctuation,
                  Keyword)),
             (r'\s+module\b', Keyword.Namespace),
             # Addresses, ports and networks
-            (r'\d+/(tcp|udp|icmp|unknown)', Number),
+            (r'\d+/(tcp|udp|icmp|unknown)\b', Number),
             (r'(\d+\.){3}\d+', Number),
             (r'(' + _hex + r'){7}' + _hex, Number),
             (r'0x' + _hex + r'(' + _hex + r'|:)*::(' + _hex + r'|:)*', Number),
@@ -42,10 +42,11 @@ class BroLexer(RegexLexer):
             # Hostnames
             (_h + r'(\.' + _h + r')+', String),
             # Numeric
-            (_float + r'\s+(day|hr|min|sec|msec|usec)s?', Literal.Date),
+            (_float + r'\s+(day|hr|min|sec|msec|usec)s?\b', Literal.Date),
             (r'0[xX]' + _hex, Number.Hex),
             (_float, Number.Float),
             (r'\d+', Number.Integer),
+            (r'/', String.Regex, 'regex'),
             (r'"', String, 'string'),
             # Operators
             (r'[!%*/+-:<=>?~|]', Operator),
@@ -62,5 +63,12 @@ class BroLexer(RegexLexer):
             (r'[^\\"\n]+', String),
             (r'\\\n', String),
             (r'\\', String)
+        ],
+        'regex': [
+            (r'/', String.Regex, '#pop'),
+            (r'\\[\\nt/]', String.Escape),
+            (r'[^\\/\n]+', String.Regex),
+            (r'\\\n', String.Regex),
+            (r'\\', String.Regex)
         ]
     }
