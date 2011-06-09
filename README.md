@@ -16,8 +16,3 @@ USAGE
 -----
 
     pygmentize -f html foo.bro
-
-TODO
-----
-
- - Implement regular expression matching.
