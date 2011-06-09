@@ -66,7 +66,7 @@ class BroLexer(RegexLexer):
         ],
         'regex': [
             (r'/', String.Regex, '#pop'),
-            (r'\\[\\nt/]', String.Escape),
+            (r'\\[\\nt/]', String.Regex), # String.Escape is too intense.
             (r'[^\\/\n]+', String.Regex),
             (r'\\\n', String.Regex),
             (r'\\', String.Regex)
